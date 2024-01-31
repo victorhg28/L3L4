@@ -6,6 +6,9 @@ uses
 file
 	L3L4.h,
 	main.cpp,
+	icono.iml,
+	objetos.h,
+	funciones.h,
 	L3L4.lay;
 
 mainconfig

@@ -20,7 +20,9 @@ void comandos_L3L4::Click(){
 
 void comandos_L3L4::funcion()
 {
-	PromptOK("generic text");
+	//PromptOK("generic text");
+	PromptOK((String)gui_nomReq.GetData());
+	//gui_numReq
 }
 
 GUI_APP_MAIN

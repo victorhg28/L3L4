@@ -1,0 +1,13 @@
+description "Displays a number of days between two dates\377";
+
+uses
+	CtrlLib;
+
+file
+	L3L4.h,
+	main.cpp,
+	L3L4.lay;
+
+mainconfig
+	"" = "GUI";
+

@@ -1,0 +1,11 @@
+LAYOUT(mi_layout, 320, 168)
+	ITEM(Upp::EditDate, date1, LeftPosZ(52, 100).TopPosZ(8, 19))
+	ITEM(Upp::Label, dv___1, SetLabel(t_("Date 1")).LeftPosZ(8, 40).TopPosZ(8, 19))
+	ITEM(Upp::EditDate, date2, LeftPosZ(212, 100).TopPosZ(8, 19))
+	ITEM(Upp::Label, dv___3, SetLabel(t_("Date 2")).LeftPosZ(168, 40).TopPosZ(8, 19))
+	ITEM(Upp::Label, result, LeftPosZ(8, 304).TopPosZ(36, 19))
+	ITEM(Upp::EditString, miTexto, LeftPosZ(144, 152).TopPosZ(80, 19))
+	ITEM(Upp::Label, dv___6, SetLabel(t_("Nombre del servicio")).HSizePosZ(24, 192).TopPosZ(80, 19))
+	ITEM(Upp::Button, btn_1, SetLabel(t_("adasdasd")).HSizePosZ(44, 60).TopPosZ(112, 32))
+END_LAYOUT
+

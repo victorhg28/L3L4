@@ -27,18 +27,8 @@ comandos_L3L4::comandos_L3L4()
 
 void comandos_L3L4::Click(){
 	
-	
 	lecturaArchivoIPs();
-	
-	// creacion de archivo para guardar resultado
-	//ofstream archivo_resultado;
-	//archivo_resultado.open("script_generado.txt", std::ios_base::app);
-	//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro()).ToStd();
-	//archivo_resultado << "\n";
-	//archivo_resultado.close();
-	
 	PromptOK("script generado");
-	
 	Close();
 }
 
@@ -69,19 +59,8 @@ void comandos_L3L4::lecturaArchivoIPs(){
 		i_auxNum++;
 		
 		//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),  (String)(func_sacar_ip(str_aux_text))     ).ToStd();
-		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text ).ToStd();
+		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,FormatInteger(gui_puertoStart),FormatInteger(gui_puertoEnd)).ToStd();
 		archivo_resultado << "\n";
-		
-	
-		
-  		
-  		//comando obj_comando(nFiltro.resultado,str_aux_text,dat1.str_puerto,dat1.str_puerto);
-  		//obj_comando.imprimir();
-  		
-  		//str_auxNombreFiltro=obj_nombreFiltro.m_imprimir();
-  		
-				//cout<<func_generandoBindeado(i_auxNum,obj_nombreFiltro.m_imprimir(), dat1.str_flowFilter);
-				//cout<<"\n";
 	}
 
 	// Cerrando archivo de lectura
@@ -110,7 +89,7 @@ String comandos_L3L4::creacionNombreDeFiltro(int i_tempContador){
 
 
 
-String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida){
+String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida, String puertoIni, String puertoFin){
 	//String s_filtername = nombre_f;
 	//String s_ipEnBruto;
 	//String s_svrstartport;
@@ -127,9 +106,11 @@ String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida){
 	aux += func_sacar_mascara(ipExtraida.ToStd());
 	//aux += (String)func_sacar_mascara(ipExtraida.ToStd());
 	aux += ",MSSTARTPORT=0,MSENDPORT=65535,SVRSTARTPORT=";
-	aux += "*puerto*";
+	//aux += "*puerto*";
+	aux += puertoIni;
 	aux += ",SVRENDPORT=";
-	aux += "*puerto*";
+	//aux += "*puerto*";
+	aux += puertoFin;
 	aux += ";";
 	
 	return aux;

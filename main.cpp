@@ -61,15 +61,25 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	int i_auxNum=0;
 	
 	//archivo para guardar el resultado del script
-	ofstream archivo_resultado;
-	archivo_resultado.open("script_generado.txt", std::ios_base::app);
+	ofstream archivo_resultado("script_generado.txt", std::ios::trunc);
+	//archivo_resultado.open("");
+	//archivo_resultado.open("script_generado.txt", std::ios_base::app);
+	
+	//ofstream newFile("filePath1_fixed.txt", std::ios::trunc);
+	//newFile<<"av";
+	//newFile<<"av";
+	//newFile<<"12vvvvv3";
 	
 	//generando comando
 	while (getline (ifstream_archivo, str_aux_text)) {
 		i_auxNum++;
+		
+		//str_aux_text
+		
+		
 		//PromptOK( "ip numero " + (String)to_string(i_auxNum)   );
 		
-		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro()).ToStd();
+		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(),(String)str_aux_text).ToStd();
 		archivo_resultado << "\n";
 		
 	
@@ -110,7 +120,7 @@ String comandos_L3L4::creacionNombreDeFiltro(){
 
 
 
-String comandos_L3L4::comandoCreacionFiltro(String nombre_f){
+String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida){
 	//String s_filtername = nombre_f;
 	//String s_ipEnBruto;
 	//String s_svrstartport;
@@ -118,7 +128,8 @@ String comandos_L3L4::comandoCreacionFiltro(String nombre_f){
 	
 	String aux = "ADD FILTER:FILTERNAME=\"";
 	aux += nombre_f + "\",L34PROTTYPE=STRING,L34PROTOCOL=ANY,SVRIPMODE=IP,SVRIP=\"";
-	aux += "ip_generica";
+	//aux += "ip_generica";
+	aux += ipExtraida;
 	aux += "\",SVRIPMASKTYPE=LENGTHTYPE,SVRIPMASKLEN=";
 	aux += "mascara_generica";
 	aux += ",MSSTARTPORT=0,MSENDPORT=65535,SVRSTARTPORT=";

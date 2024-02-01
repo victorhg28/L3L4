@@ -14,7 +14,7 @@ public:
 	
 	//metodos
 	void Click();
-	String comandoCreacionFiltro(String nombre_f);
+	String comandoCreacionFiltro(String nombre_f, String ipExtraida);
 	String creacionNombreDeFiltro();
 	void lecturaArchivoIPs();
 	

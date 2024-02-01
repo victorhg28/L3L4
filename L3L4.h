@@ -15,7 +15,7 @@ public:
 	//metodos
 	void Click();
 	String comandoCreacionFiltro(String nombre_f, String ipExtraida);
-	String creacionNombreDeFiltro();
+	String creacionNombreDeFiltro(int i_tempContador);
 	void lecturaArchivoIPs();
 	
 	//constuctor

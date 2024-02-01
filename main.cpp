@@ -62,24 +62,12 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	
 	//archivo para guardar el resultado del script
 	ofstream archivo_resultado("script_generado.txt", std::ios::trunc);
-	//archivo_resultado.open("");
-	//archivo_resultado.open("script_generado.txt", std::ios_base::app);
-	
-	//ofstream newFile("filePath1_fixed.txt", std::ios::trunc);
-	//newFile<<"av";
-	//newFile<<"av";
-	//newFile<<"12vvvvv3";
 	
 	//generando comando
 	while (getline (ifstream_archivo, str_aux_text)) {
 		i_auxNum++;
 		
-		//str_aux_text
-		
-		
-		//PromptOK( "ip numero " + (String)to_string(i_auxNum)   );
-		
-		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(),(String)str_aux_text).ToStd();
+		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),(String)str_aux_text).ToStd();
 		archivo_resultado << "\n";
 		
 	
@@ -101,14 +89,14 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	archivo_resultado.close();
 };
 
-String comandos_L3L4::creacionNombreDeFiltro(){
+String comandos_L3L4::creacionNombreDeFiltro(int i_tempContador){
 	//struct
 	nombreFiltro nFiltro;
 	
 	nFiltro.pre = "f_";
 	nFiltro.nombre = (String)gui_nomServ.GetData();
 	nFiltro.req = "_r"+FormatInteger(gui_numReq);
-	nFiltro.num_auto = "12";
+	nFiltro.num_auto = (String)to_string(i_tempContador);
 	
 	nFiltro.resultado = nFiltro.pre;
 	nFiltro.resultado += nFiltro.nombre;

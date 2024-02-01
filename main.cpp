@@ -29,37 +29,15 @@ comandos_L3L4::comandos_L3L4()
 
 void comandos_L3L4::Click(){
 	
-	//Creacion nombre de filtro
 	
-	//f_titok_r123123_001
+	lecturaArchivoIPs();
 	
 	// creacion de archivo para guardar resultado
-	ofstream archivo_resultado;
-	archivo_resultado.open("script_generado.txt", std::ios_base::app);
-	//archivo_resultado<<"abc";
-	archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro()).ToStd();
-	archivo_resultado << "\n";
-	
-	
-	
-	
-	// escribiendo en el archiv
-	//archivo_resultado << comandoCreacionFiltro(nFiltro.resultado).ToStd();
+	//ofstream archivo_resultado;
+	//archivo_resultado.open("script_generado.txt", std::ios_base::app);
 	//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro()).ToStd();
-	
-	
-	
-	
-	//(creacionNombreDeFiltro())
-	
-	
-	//apend en lugar de sobreescribir archivo
-	
-	
 	//archivo_resultado << "\n";
-	
-	// cerrando el archivo
-	archivo_resultado.close();
+	//archivo_resultado.close();
 	
 }
 
@@ -82,12 +60,19 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	//contador
 	int i_auxNum=0;
 	
+	//archivo para guardar el resultado del script
+	ofstream archivo_resultado;
+	archivo_resultado.open("script_generado.txt", std::ios_base::app);
+	
 	//generando comando
 	while (getline (ifstream_archivo, str_aux_text)) {
 		i_auxNum++;
 		//PromptOK( "ip numero " + (String)to_string(i_auxNum)   );
 		
+		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro()).ToStd();
+		archivo_resultado << "\n";
 		
+	
 		
   		
   		//comando obj_comando(nFiltro.resultado,str_aux_text,dat1.str_puerto,dat1.str_puerto);
@@ -99,8 +84,11 @@ void comandos_L3L4::lecturaArchivoIPs(){
 				//cout<<"\n";
 	}
 
-	// Cerrando archivo
+	// Cerrando archivo de lectura
 	ifstream_archivo.close();
+	
+	// Cerrando archivo de escritura
+	archivo_resultado.close();
 };
 
 String comandos_L3L4::creacionNombreDeFiltro(){

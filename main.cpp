@@ -2,6 +2,11 @@
 # include "objetos.h"
 #include <typeinfo>
 
+#define IMAGECLASS L3L4Img
+#define  IMAGEFILE <L3L4/imagenes.iml>
+#include <Draw/iml.h>
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -21,6 +26,9 @@ using namespace std;
 //constructor
 comandos_L3L4::comandos_L3L4()
 {
+	//Icon(Tray::Icon());
+	//Icon(L3L4Img::icono());
+	Icon(L3L4Img::icono());
 	CtrlLayout(*this, "L3L4");
 	btn_1 <<= THISBACK(Click);
 }
@@ -32,11 +40,10 @@ void comandos_L3L4::Click(){
 	Close();
 }
 
-
 GUI_APP_MAIN{
 	comandos_L3L4 programa;
 	
-	programa.Sizeable();
+	//programa.Sizeable();
 	programa.Run();
 }
 
@@ -53,6 +60,9 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	
 	//archivo para guardar el resultado del script
 	ofstream archivo_resultado("script_generado.txt", std::ios::trunc);
+	
+	archivo_resultado<< "// Filtros ////////////////////////////////////////////////////////";
+	archivo_resultado<< "\n";
 	
 	//generando comando
 	while (getline (ifstream_archivo, str_aux_text)) {
@@ -90,26 +100,15 @@ String comandos_L3L4::creacionNombreDeFiltro(int i_tempContador){
 
 
 String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida, String puertoIni, String puertoFin){
-	//String s_filtername = nombre_f;
-	//String s_ipEnBruto;
-	//String s_svrstartport;
-	//String s_svrendport;
-
-	//(String)(func_sacar_ip(
 	
 	String aux = "ADD FILTER:FILTERNAME=\"";
 	aux += nombre_f + "\",L34PROTTYPE=STRING,L34PROTOCOL=ANY,SVRIPMODE=IP,SVRIP=\"";
-	//aux += "ip_generica";
 	aux += func_sacar_ip(ipExtraida.ToStd());
 	aux += "\",SVRIPMASKTYPE=LENGTHTYPE,SVRIPMASKLEN=";
-	//aux += "mascara_generica";
 	aux += func_sacar_mascara(ipExtraida.ToStd());
-	//aux += (String)func_sacar_mascara(ipExtraida.ToStd());
 	aux += ",MSSTARTPORT=0,MSENDPORT=65535,SVRSTARTPORT=";
-	//aux += "*puerto*";
 	aux += puertoIni;
 	aux += ",SVRENDPORT=";
-	//aux += "*puerto*";
 	aux += puertoFin;
 	aux += ";";
 	

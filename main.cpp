@@ -18,6 +18,7 @@
 
 using namespace std;
 
+//constructor
 comandos_L3L4::comandos_L3L4()
 {
 	CtrlLayout(*this, "L3L4");
@@ -32,6 +33,77 @@ void comandos_L3L4::Click(){
 	
 	//f_titok_r123123_001
 	
+	// creacion de archivo para guardar resultado
+	ofstream archivo_resultado;
+	archivo_resultado.open("script_generado.txt", std::ios_base::app);
+	//archivo_resultado<<"abc";
+	archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro()).ToStd();
+	archivo_resultado << "\n";
+	
+	
+	
+	
+	// escribiendo en el archiv
+	//archivo_resultado << comandoCreacionFiltro(nFiltro.resultado).ToStd();
+	//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro()).ToStd();
+	
+	
+	
+	
+	//(creacionNombreDeFiltro())
+	
+	
+	//apend en lugar de sobreescribir archivo
+	
+	
+	//archivo_resultado << "\n";
+	
+	// cerrando el archivo
+	archivo_resultado.close();
+	
+}
+
+
+GUI_APP_MAIN{
+	comandos_L3L4 programa;
+	
+	programa.Sizeable();
+	programa.Run();
+}
+
+void comandos_L3L4::lecturaArchivoIPs(){
+	
+	//abriendo archivo
+	ifstream ifstream_archivo("ips.txt");
+	
+	//variable para leer lineas
+	string str_aux_text;
+	
+	//contador
+	int i_auxNum=0;
+	
+	//generando comando
+	while (getline (ifstream_archivo, str_aux_text)) {
+		i_auxNum++;
+		//PromptOK( "ip numero " + (String)to_string(i_auxNum)   );
+		
+		
+		
+  		
+  		//comando obj_comando(nFiltro.resultado,str_aux_text,dat1.str_puerto,dat1.str_puerto);
+  		//obj_comando.imprimir();
+  		
+  		//str_auxNombreFiltro=obj_nombreFiltro.m_imprimir();
+  		
+				//cout<<func_generandoBindeado(i_auxNum,obj_nombreFiltro.m_imprimir(), dat1.str_flowFilter);
+				//cout<<"\n";
+	}
+
+	// Cerrando archivo
+	ifstream_archivo.close();
+};
+
+String comandos_L3L4::creacionNombreDeFiltro(){
 	//struct
 	nombreFiltro nFiltro;
 	
@@ -45,60 +117,10 @@ void comandos_L3L4::Click(){
 	nFiltro.resultado += nFiltro.req;
 	nFiltro.resultado += "_"+nFiltro.num_auto;
 	
-	//gui_resultado.SetText(nFiltro.resultado);
-	//gui_resultado.SetText(comandoCreacionFiltro(nFiltro.resultado));
-	
-	// creacion de archivo para guardar resultado
-	// Create and open a text file
-	ofstream archivo_resultado("filename.txt");
-
-	// Write to the file
-	//archivo_resultado << "Files can be tricky, but it is fun enough!";
-	archivo_resultado << comandoCreacionFiltro(nFiltro.resultado).ToStd();
-
-	// Close the file
-	archivo_resultado.close();
-	
-	
-	
-	//String
-	
-	/*
-	//lectura de archivo IPs
-	
-	//abriendo archivo
-	ifstream ifstream_archivo("ips.txt");
-	
-	//variable para leer lineas
-	string str_aux_text;
-	
-	//generando comando
-	while (getline (ifstream_archivo, str_aux_text)) {
-		//i_auxNum++;
-  		
-  		comando obj_comando(nFiltro.resultado,str_aux_text,dat1.str_puerto,dat1.str_puerto);
-  		obj_comando.imprimir();
-  		
-  		str_auxNombreFiltro=obj_nombreFiltro.m_imprimir();
-  		
-		//cout<<func_generandoBindeado(i_auxNum,obj_nombreFiltro.m_imprimir(), dat1.str_flowFilter);
-		//cout<<"\n";
-	}
-
-	// Cerrando archivo
-	ifstream_archivo.close();
-	*/
-	
-	
-}
+	return nFiltro.resultado;
+};
 
 
-GUI_APP_MAIN{
-	comandos_L3L4 programa;
-	
-	programa.Sizeable();
-	programa.Run();
-}
 
 String comandos_L3L4::comandoCreacionFiltro(String nombre_f){
 	//String s_filtername = nombre_f;

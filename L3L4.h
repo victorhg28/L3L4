@@ -11,11 +11,15 @@ using namespace Upp;
 class comandos_L3L4 : public Withmi_layout<TopWindow> {
 public:
 	typedef comandos_L3L4 CLASSNAME;
-	void funcion();
+	
+	//metodos
 	void Click();
-	comandos_L3L4();
-	//String Str_nombreFiltro();
 	String comandoCreacionFiltro(String nombre_f);
+	String creacionNombreDeFiltro();
+	void lecturaArchivoIPs();
+	
+	//constuctor
+	comandos_L3L4();
 };
 
 struct nombreFiltro{

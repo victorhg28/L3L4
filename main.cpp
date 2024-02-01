@@ -30,9 +30,23 @@ void comandos_L3L4::Click(){
 	//f_titok_r123123_001
 	
 	//struct
-	//nombreFiltro nFiltro;
+	nombreFiltro nFiltro;
 	
-	String Str_acum;
+	nFiltro.pre = "f_";
+	nFiltro.nombre = (String)gui_nomServ.GetData();
+	nFiltro.req = "_r"+FormatInteger(gui_numReq);
+	nFiltro.num_auto = "12";
+	
+	nFiltro.resultado = nFiltro.pre;
+	nFiltro.resultado += nFiltro.nombre;
+	nFiltro.resultado += nFiltro.req;
+	nFiltro.resultado += nFiltro.num_auto;
+	
+	gui_resultado.SetText(nFiltro.resultado);
+	
+	//String Str_acum;
+	
+	
 	
 	//probando num requeriString(gui_numReqmiento
 	//gui_resultado.SetText(FormatInteger(gui_numReq));
@@ -41,8 +55,8 @@ void comandos_L3L4::Click(){
 	//gui_resultado.SetText(Format(gui_nomServ));
 	//gui_resultado.SetText((String)gui_nomServ.GetData());
 	
-	Str_acum = "f_"+(String)gui_nomServ.GetData()+"_r"+FormatInteger(gui_numReq)+"__01";
-	gui_resultado.SetText(Str_acum);
+	//Str_acum = "f_"+(String)gui_nomServ.GetData()+"_r"+FormatInteger(gui_numReq)+"__01";
+	//gui_resultado.SetText(Str_acum);
 	
 	//(gui_nomServ));
 	

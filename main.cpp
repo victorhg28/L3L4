@@ -25,8 +25,6 @@ comandos_L3L4::comandos_L3L4()
 	btn_1 <<= THISBACK(Click);
 }
 
-
-
 void comandos_L3L4::Click(){
 	
 	
@@ -39,6 +37,9 @@ void comandos_L3L4::Click(){
 	//archivo_resultado << "\n";
 	//archivo_resultado.close();
 	
+	PromptOK("script generado");
+	
+	Close();
 }
 
 
@@ -67,7 +68,8 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	while (getline (ifstream_archivo, str_aux_text)) {
 		i_auxNum++;
 		
-		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),(String)str_aux_text).ToStd();
+		//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),  (String)(func_sacar_ip(str_aux_text))     ).ToStd();
+		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text ).ToStd();
 		archivo_resultado << "\n";
 		
 	
@@ -96,7 +98,7 @@ String comandos_L3L4::creacionNombreDeFiltro(int i_tempContador){
 	nFiltro.pre = "f_";
 	nFiltro.nombre = (String)gui_nomServ.GetData();
 	nFiltro.req = "_r"+FormatInteger(gui_numReq);
-	nFiltro.num_auto = (String)to_string(i_tempContador);
+	nFiltro.num_auto = (String)func_formatoNumeracion(i_tempContador);
 	
 	nFiltro.resultado = nFiltro.pre;
 	nFiltro.resultado += nFiltro.nombre;
@@ -113,13 +115,17 @@ String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida){
 	//String s_ipEnBruto;
 	//String s_svrstartport;
 	//String s_svrendport;
+
+	//(String)(func_sacar_ip(
 	
 	String aux = "ADD FILTER:FILTERNAME=\"";
 	aux += nombre_f + "\",L34PROTTYPE=STRING,L34PROTOCOL=ANY,SVRIPMODE=IP,SVRIP=\"";
 	//aux += "ip_generica";
-	aux += ipExtraida;
+	aux += func_sacar_ip(ipExtraida.ToStd());
 	aux += "\",SVRIPMASKTYPE=LENGTHTYPE,SVRIPMASKLEN=";
-	aux += "mascara_generica";
+	//aux += "mascara_generica";
+	aux += func_sacar_mascara(ipExtraida.ToStd());
+	//aux += (String)func_sacar_mascara(ipExtraida.ToStd());
 	aux += ",MSSTARTPORT=0,MSENDPORT=65535,SVRSTARTPORT=";
 	aux += "*puerto*";
 	aux += ",SVRENDPORT=";

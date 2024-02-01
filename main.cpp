@@ -23,11 +23,12 @@
 
 using namespace std;
 
+//declaraion funciones
+string func_generandoBindeado(string filterName, string str_filterGroup);
+
 //constructor
 comandos_L3L4::comandos_L3L4()
 {
-	//Icon(Tray::Icon());
-	//Icon(L3L4Img::icono());
 	Icon(L3L4Img::icono());
 	CtrlLayout(*this, "L3L4");
 	btn_1 <<= THISBACK(Click);
@@ -72,6 +73,25 @@ void comandos_L3L4::lecturaArchivoIPs(){
 		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,FormatInteger(gui_puertoStart),FormatInteger(gui_puertoEnd)).ToStd();
 		archivo_resultado << "\n";
 	}
+	
+	///////
+	int contador=1;
+	
+	//archivo_resultado<<"\n-----------------------";
+	//archivo_resultado<<"\nBindeado\n";
+	//archivo_resultado<<"-----------------------\n";
+	archivo_resultado<<"\n\n// Bindeado ////////////////////////////////////////////////////////\n";
+	
+	
+	while(contador < i_auxNum+1){
+		//nombre_filtro obj_nombreFiltro("f_", dat1.str_nombreServicio+"_", dat1.str_numReq, func_formatoNumeracion(contador) );
+		archivo_resultado<<func_generandoBindeado(creacionNombreDeFiltro(contador).ToStd(), gui_fg.GetData().ToStd());
+		archivo_resultado<<"\n";
+		//cout<<"\n";
+		
+		contador++;
+	}
+	///////
 
 	// Cerrando archivo de lectura
 	ifstream_archivo.close();
@@ -113,4 +133,8 @@ String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida, S
 	aux += ";";
 	
 	return aux;
+}
+
+string func_generandoBindeado(string filterName, string str_filterGroup){
+	return "ADD FLTBINDFLOWF:FLOWFILTERNAME=\""+ str_filterGroup +"\",FILTERNAME=\""+ filterName + "\";";
 }

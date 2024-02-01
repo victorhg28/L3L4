@@ -1,12 +1,13 @@
-LAYOUT(mi_layout, 392, 248)
-	ITEM(Upp::EditString, gui_nomReq, LeftPosZ(144, 228).TopPosZ(48, 19))
-	ITEM(Upp::Label, dv___1, SetLabel(t_("Nombre del servicio")).HSizePosZ(16, 260).TopPosZ(48, 19))
-	ITEM(Upp::Button, btn_1, SetLabel(t_("Ejecutar")).HSizePosZ(12, 280).TopPosZ(184, 48))
+LAYOUT(mi_layout, 560, 248)
+	ITEM(Upp::EditString, gui_nomServ, LeftPosZ(144, 228).TopPosZ(48, 19))
+	ITEM(Upp::Label, dv___1, SetLabel(t_("Nombre del servicio")).HSizePosZ(16, 428).TopPosZ(48, 19))
+	ITEM(Upp::Button, btn_1, SetLabel(t_("Ejecutar")).HSizePosZ(12, 448).TopPosZ(184, 48))
 	ITEM(Upp::Label, dv___3, SetLabel(t_("Num. Requerimiento")).LeftPosZ(16, 116).TopPosZ(16, 19))
 	ITEM(Upp::EditInt, gui_numReq, LeftPosZ(144, 228).TopPosZ(16, 19))
 	ITEM(Upp::Label, dv___5, SetLabel(t_("Puerto")).LeftPosZ(16, 116).TopPosZ(80, 19))
 	ITEM(Upp::Label, dv___6, SetLabel(t_("Flowfilter")).LeftPosZ(16, 116).TopPosZ(112, 19))
 	ITEM(Upp::EditString, gui_fg, LeftPosZ(144, 228).TopPosZ(112, 19))
 	ITEM(Upp::EditInt, gui_puerto, LeftPosZ(144, 228).TopPosZ(80, 19))
+	ITEM(Upp::Label, gui_resultado, LeftPosZ(16, 392).TopPosZ(152, 19))
 END_LAYOUT
 

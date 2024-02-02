@@ -5,9 +5,9 @@ uses
 
 file
 	L3L4.h,
+	L3L4.rc,
 	main.cpp,
 	imagenes.iml,
-	objetos.h,
 	funciones.h,
 	L3L4.lay;
 

@@ -31,6 +31,12 @@ string func_generandoBindeado(string filterName, string str_filterGroup);
 comandos_L3L4::comandos_L3L4()
 {
 	Icon(L3L4Img::icono());
+	
+	//img_archivo.SetImage(L3L4Img::archivoNoCargado());
+	archivo_ok.SetImage(L3L4Img::archivo_X());
+	//SetImage(L3L4Img::icono());
+	//ImageCtrlSetImage
+	
 	CtrlLayout(*this, "L3L4");
 	btn_1 <<= THISBACK(Click);
 }
@@ -172,7 +178,13 @@ void comandos_L3L4::Paint(Draw &w)
 {
 	//w.DrawRect(GetSize(),White());
 	
-	w.DrawRect(GetSize(),SColorPaper());
+	//w.DrawRect(GetSize(),SColorPaper());
+	//w.DrawRect(GetSize(),Black());
+	
+							      //(R,G,B)
+	//w.DrawRect(GetSize(),Color(169,222,156));
+	//w.DrawRect(GetSize(),Color(117,159,115));
+	w.DrawRect(GetSize(),Color(29,21,34));
 	
 	
 	/*
@@ -186,6 +198,8 @@ void comandos_L3L4::Paint(Draw &w)
 	if(files.GetCount()){
 		//w.DrawText(2, 2 * Draw::GetStdFontCy(), files[0]);
 		lbl_archivo.SetText(files[0]);
+		//img_archivo.SetImage(L3L4Img::archivoCargado());
+		archivo_ok.SetImage(L3L4Img::archivo_OK());
 	}else{
 		lbl_archivo.SetText("*arrastre y suelte archivo aqui*");
 	}

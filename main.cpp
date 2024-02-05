@@ -1,5 +1,5 @@
 # include "L3L4.h"
-# include "objetos.h"
+//# include "objetos.h"
 #include <typeinfo>
 
 #define IMAGECLASS L3L4Img
@@ -16,11 +16,12 @@
 	#include "funciones.h"
 #endif
 
+/*
 #ifndef header_objetos
 	#define header_objetos
 	#include "objetos.h"
 #endif
-
+*/
 using namespace std;
 
 //declaraion funciones
@@ -138,3 +139,63 @@ String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida, S
 string func_generandoBindeado(string filterName, string str_filterGroup){
 	return "ADD FLTBINDFLOWF:FLOWFILTERNAME=\""+ str_filterGroup +"\",FILTERNAME=\""+ filterName + "\";";
 }
+
+
+
+////////////////////////////////////////
+// Para drag and drop
+////////////////////////////////////////
+
+void comandos_L3L4::DragAndDrop(Point p, PasteClip& d)
+{
+	if(IsDragAndDropSource())
+		return;
+	if(AcceptFiles(d)) {
+		files = GetFiles(d);
+		Refresh();
+	}
+}
+
+void comandos_L3L4::LeftDrag(Point p, dword keyflags)
+{
+	if(files.GetCount()) {
+		VectorMap<String, ClipData> data;
+		AppendFiles(data, files);
+		DoDragAndDrop(data, Null, DND_COPY);
+	}
+}
+
+
+
+
+void comandos_L3L4::Paint(Draw &w)
+{
+	//w.DrawRect(GetSize(),White());
+	
+	w.DrawRect(GetSize(),SColorPaper());
+	
+	
+	/*
+	w.DrawText(2, 2, "None");
+	if(files.GetCount()){
+		w.DrawText(2, 2 * Draw::GetStdFontCy(), files[0]);
+	}
+	*/
+	//label1.SetText("antes");
+	
+	if(files.GetCount()){
+		//w.DrawText(2, 2 * Draw::GetStdFontCy(), files[0]);
+		lbl_archivo.SetText(files[0]);
+	}else{
+		lbl_archivo.SetText("*arrastre y suelte archivo aqui*");
+	}
+	
+	//label1.SetText("despues");
+	
+}
+
+
+
+
+
+

@@ -35,7 +35,6 @@ string func_sacar_ip(string str_ip_con_mascara){
 
 string func_formatoNumeracion(int entrada){
 	
-	// formato 000
 	if (entrada<10){
 		return "00"+to_string(entrada);
 		//.size()

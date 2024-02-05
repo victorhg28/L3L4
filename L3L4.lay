@@ -1,4 +1,4 @@
-LAYOUT(mi_layout, 464, 248)
+LAYOUT(mi_layout, 464, 416)
 	ITEM(Upp::EditString, gui_nomServ, LeftPosZ(160, 280).TopPosZ(76, 19))
 	ITEM(Upp::Label, dv___1, SetLabel(t_("Nombre del servicio")).HSizePosZ(20, 328).TopPosZ(76, 19))
 	ITEM(Upp::Button, btn_1, SetLabel(t_("Ejecutar")).HSizePosZ(16, 24).TopPosZ(180, 48))
@@ -10,7 +10,9 @@ LAYOUT(mi_layout, 464, 248)
 	ITEM(Upp::EditString, gui_fg, LeftPosZ(160, 280).TopPosZ(140, 19))
 	ITEM(Upp::EditInt, gui_puertoStart, LeftPosZ(160, 68).TopPosZ(108, 19))
 	ITEM(Upp::EditInt, gui_puertoEnd, HSizePosZ(376, 24).TopPosZ(108, 19))
-	ITEM(Upp::Label, dv___11, SetLabel(t_("nombre del archivo (.txt)")).LeftPosZ(20, 128).TopPosZ(12, 19))
-	ITEM(Upp::EditString, gui_archivoIPs, LeftPosZ(160, 280).TopPosZ(12, 19))
+	ITEM(Upp::Label, dv___11, SetLabel(t_("archivo con ips")).LeftPosZ(20, 128).TopPosZ(12, 19))
+	ITEM(Upp::Option, dv___12, SetLabel(t_("option")).HSizePosZ(152, 256).TopPosZ(304, 16))
+	ITEM(Upp::Switch, dv___13, SetLabel(t_("*todavía no implementado\nIPV4\nIPV6")).LeftPosZ(68, 88).TopPosZ(328, 76))
+	ITEM(Upp::Label, lbl_archivo, SetLabel(t_("*arrastre y suelte archivo aqui*")).LeftPosZ(160, 280).TopPosZ(12, 19))
 END_LAYOUT
 

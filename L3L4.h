@@ -18,6 +18,12 @@ public:
 	String creacionNombreDeFiltro(int i_tempContador);
 	void lecturaArchivoIPs();
 	
+	//para Drag and Drop de archivo
+	virtual void DragAndDrop(Point p, PasteClip& d);
+	virtual void LeftDrag(Point p, dword keyflags);
+	virtual void Paint(Draw &w);
+	Vector<String> files;
+	
 	//constuctor
 	comandos_L3L4();
 };

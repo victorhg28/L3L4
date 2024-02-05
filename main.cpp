@@ -39,10 +39,23 @@ comandos_L3L4::comandos_L3L4()
 	
 	CtrlLayout(*this, "L3L4");
 	btn_1 <<= THISBACK(Click);
+	btn_2 <<= THISBACK(click2);
+	
+	
+	
+//	gui_puerto.Get();
+	//puerto80
 }
 
-void comandos_L3L4::Click(){
+
+void comandos_L3L4::click2(){
+	//gui_puerto.Get();
+	//(String)to_string(gui_puerto.Get());
+	PromptOK((String)to_string(gui_puerto80.Get()));
+}
 	
+
+void comandos_L3L4::Click(){
 	lecturaArchivoIPs();
 	PromptOK("script generado");
 	Close();
@@ -72,13 +85,15 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	archivo_resultado<< "// Filtros ////////////////////////////////////////////////////////";
 	archivo_resultado<< "\n";
 	
-	//generando comando
-	while (getline (ifstream_archivo, str_aux_text)) {
-		i_auxNum++;
-		
-		//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),  (String)(func_sacar_ip(str_aux_text))     ).ToStd();
-		archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,FormatInteger(gui_puertoStart),FormatInteger(gui_puertoEnd)).ToStd();
-		archivo_resultado << "\n";
+	if (gui_puerto80.Get()){
+		//generando comando
+		while (getline (ifstream_archivo, str_aux_text)) {
+			i_auxNum++;
+			
+			//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),  (String)(func_sacar_ip(str_aux_text))     ).ToStd();
+			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"80", "80").ToStd();
+			archivo_resultado << "\n";
+		}
 	}
 	
 	///////

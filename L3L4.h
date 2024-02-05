@@ -18,6 +18,11 @@ public:
 	String creacionNombreDeFiltro(int i_tempContador);
 	void lecturaArchivoIPs();
 	
+	//para probar estado options
+	void click2();
+
+	
+	
 	//para Drag and Drop de archivo
 	virtual void DragAndDrop(Point p, PasteClip& d);
 	virtual void LeftDrag(Point p, dword keyflags);

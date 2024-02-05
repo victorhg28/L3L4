@@ -39,7 +39,7 @@ comandos_L3L4::comandos_L3L4()
 	
 	CtrlLayout(*this, "L3L4");
 	btn_1 <<= THISBACK(Click);
-	btn_2 <<= THISBACK(click2);
+	btn_pruebas <<= THISBACK(click_pruebas);
 	
 	
 	
@@ -47,11 +47,25 @@ comandos_L3L4::comandos_L3L4()
 	//puerto80
 }
 
-
-void comandos_L3L4::click2(){
-	//gui_puerto.Get();
-	//(String)to_string(gui_puerto.Get());
-	PromptOK((String)to_string(gui_puerto80.Get()));
+void comandos_L3L4::click_pruebas(){
+	//PromptOK((String)rutaArchivo);
+	
+	//Label
+	
+	//ruta_static.SetText((String)rutaArchivo);
+	
+	//files[0].ToStd();
+	
+	//PromptOK((String)files[0]);
+	//PromptOK("aqui"+(String)files[0].ToStd());
+	
+	
+	
+	
+	//ruta_static.GetText();
+	
+	//lbl_archivo.GetData().ToStd()
+	//PromptOK((String)lbl_archivo.GetData());
 }
 	
 
@@ -71,7 +85,18 @@ GUI_APP_MAIN{
 void comandos_L3L4::lecturaArchivoIPs(){
 	
 	//abriendo archivo
-	ifstream ifstream_archivo("ips.txt");
+	//ifstream ifstream_archivo("ips.txt");
+	
+	//ifstream ifstream_archivo(rutaArchivo);
+	
+	//string valor;
+	//valor=files[0];
+	
+	//ifstream ifstream_archivo(files[0]);
+	//ifstream ifstream_archivo(valor);
+	ifstream ifstream_archivo(files[0]);
+	
+	
 	
 	//variable para leer lineas
 	string str_aux_text;
@@ -173,6 +198,7 @@ void comandos_L3L4::DragAndDrop(Point p, PasteClip& d)
 		return;
 	if(AcceptFiles(d)) {
 		files = GetFiles(d);
+		
 		Refresh();
 	}
 }
@@ -212,9 +238,21 @@ void comandos_L3L4::Paint(Draw &w)
 	
 	if(files.GetCount()){
 		//w.DrawText(2, 2 * Draw::GetStdFontCy(), files[0]);
-		lbl_archivo.SetText(files[0]);
+		
+		
+		//lbl_archivo.SetText(files[0]);
+		
+		Button
+		
 		//img_archivo.SetImage(L3L4Img::archivoCargado());
 		archivo_ok.SetImage(L3L4Img::archivo_OK());
+		lbl_archivo.SetText(files[0]);
+		//lbl_archivo
+		
+		//guardando ruta del archivo en la variable 'rutaArchivo' para poder leerlo luego
+		//rutaArchivo=files[0];
+		//PromptOK(files[0]);
+		//rutaArchivo=files[0];
 	}else{
 		lbl_archivo.SetText("*arrastre y suelte archivo aqui*");
 	}

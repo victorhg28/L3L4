@@ -39,14 +39,14 @@ comandos_L3L4::comandos_L3L4()
 	
 	CtrlLayout(*this, "L3L4");
 	btn_1 <<= THISBACK(Click);
-	btn_pruebas <<= THISBACK(click_pruebas);
+	//btn_pruebas <<= THISBACK(click_pruebas);
 	
 	
 	
 //	gui_puerto.Get();
 	//puerto80
 }
-
+/*
 void comandos_L3L4::click_pruebas(){
 	//PromptOK((String)rutaArchivo);
 	
@@ -67,37 +67,41 @@ void comandos_L3L4::click_pruebas(){
 	//lbl_archivo.GetData().ToStd()
 	//PromptOK((String)lbl_archivo.GetData());
 }
-	
+*/
 
 void comandos_L3L4::Click(){
-	lecturaArchivoIPs();
-	PromptOK("script generado");
-	Close();
+	if(gui_puerto80 || gui_puerto443 || gui_puerto1935){
+		
+		
+		//lbl_archivo.SetText("*arrastre y suelte archivo aqui*");
+		
+		//lbl_archivo.GetText().ToStd();
+		
+		if(lbl_archivo.GetText().ToStd()!="*arrastre y suelte archivo aqui*"){
+			lecturaArchivoIPs();
+			PromptOK("script generado");
+			Close();
+		}
+		else{
+			PromptOK("Seleccione un archivo");
+		}
+	}
+	else{
+		PromptOK("Seleccione por lo menos un puerto");
+	}
+	
 }
 
 GUI_APP_MAIN{
 	comandos_L3L4 programa;
-	
 	//programa.Sizeable();
 	programa.Run();
 }
 
 void comandos_L3L4::lecturaArchivoIPs(){
 	
-	//abriendo archivo
-	//ifstream ifstream_archivo("ips.txt");
-	
-	//ifstream ifstream_archivo(rutaArchivo);
-	
-	//string valor;
-	//valor=files[0];
-	
-	//ifstream ifstream_archivo(files[0]);
-	//ifstream ifstream_archivo(valor);
 	ifstream ifstream_archivo(files[0]);
-	
-	
-	
+		
 	//variable para leer lineas
 	string str_aux_text;
 	
@@ -123,19 +127,12 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	
 	///////
 	int contador=1;
-	
-	//archivo_resultado<<"\n-----------------------";
-	//archivo_resultado<<"\nBindeado\n";
-	//archivo_resultado<<"-----------------------\n";
 	archivo_resultado<<"\n\n// Bindeado ////////////////////////////////////////////////////////\n";
 	
 	
 	while(contador < i_auxNum+1){
-		//nombre_filtro obj_nombreFiltro("f_", dat1.str_nombreServicio+"_", dat1.str_numReq, func_formatoNumeracion(contador) );
 		archivo_resultado<<func_generandoBindeado(creacionNombreDeFiltro(contador).ToStd(), gui_fg.GetData().ToStd());
 		archivo_resultado<<"\n";
-		//cout<<"\n";
-		
 		contador++;
 	}
 	///////
@@ -217,47 +214,14 @@ void comandos_L3L4::LeftDrag(Point p, dword keyflags)
 
 void comandos_L3L4::Paint(Draw &w)
 {
-	//w.DrawRect(GetSize(),White());
-	
-	//w.DrawRect(GetSize(),SColorPaper());
-	//w.DrawRect(GetSize(),Black());
-	
-							      //(R,G,B)
-	//w.DrawRect(GetSize(),Color(169,222,156));
-	//w.DrawRect(GetSize(),Color(117,159,115));
 	w.DrawRect(GetSize(),Color(29,21,34));
 	
-	
-	/*
-	w.DrawText(2, 2, "None");
 	if(files.GetCount()){
-		w.DrawText(2, 2 * Draw::GetStdFontCy(), files[0]);
-	}
-	*/
-	//label1.SetText("antes");
-	
-	if(files.GetCount()){
-		//w.DrawText(2, 2 * Draw::GetStdFontCy(), files[0]);
-		
-		
-		//lbl_archivo.SetText(files[0]);
-		
-		Button
-		
-		//img_archivo.SetImage(L3L4Img::archivoCargado());
 		archivo_ok.SetImage(L3L4Img::archivo_OK());
 		lbl_archivo.SetText(files[0]);
-		//lbl_archivo
-		
-		//guardando ruta del archivo en la variable 'rutaArchivo' para poder leerlo luego
-		//rutaArchivo=files[0];
-		//PromptOK(files[0]);
-		//rutaArchivo=files[0];
 	}else{
 		lbl_archivo.SetText("*arrastre y suelte archivo aqui*");
 	}
-	
-	//label1.SetText("despues");
 	
 }
 

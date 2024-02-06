@@ -106,7 +106,7 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	string str_aux_text;
 	
 	//contador
-	int i_auxNum=0;
+	int i_auxNum=1;
 	
 	//archivo para guardar el resultado del script
 	ofstream archivo_resultado("script_generado.txt", std::ios::trunc);
@@ -114,6 +114,38 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	archivo_resultado<< "// Filtros ////////////////////////////////////////////////////////";
 	archivo_resultado<< "\n";
 	
+	while (getline (ifstream_archivo, str_aux_text)) {
+		
+		//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),  (String)(func_sacar_ip(str_aux_text))     ).ToStd();
+
+
+		if(gui_puerto80.Get()){
+			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"80", "80").ToStd();
+			archivo_resultado << "\n";
+			i_auxNum++;
+		}
+		
+		if(gui_puerto80.Get()){
+			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"443", "443").ToStd();
+			archivo_resultado << "\n";
+			i_auxNum++;
+		}
+		
+		if(gui_puerto80.Get()){
+			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"1935", "1935").ToStd();
+			archivo_resultado << "\n";
+			i_auxNum++;
+		}
+	}
+
+	
+
+	
+	
+	
+	
+	// PUERTO 80 ////////////////////////////////////////////////////////////////
+	/*
 	if (gui_puerto80.Get()){
 		//generando comando
 		while (getline (ifstream_archivo, str_aux_text)) {
@@ -124,6 +156,11 @@ void comandos_L3L4::lecturaArchivoIPs(){
 			archivo_resultado << "\n";
 		}
 	}
+	*/
+	// PUERTO 443 ////////////////////////////////////////////////////////////////
+	//if (gui_puerto443.
+	//if (gui_puerto1935.Get()
+	
 	
 	///////
 	int contador=1;

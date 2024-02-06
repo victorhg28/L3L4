@@ -26,6 +26,7 @@ using namespace std;
 
 //declaraion funciones
 string func_generandoBindeado(string filterName, string str_filterGroup);
+string func_generandoRollback(string filterName);
 
 //constructor
 comandos_L3L4::comandos_L3L4()
@@ -114,10 +115,11 @@ void comandos_L3L4::lecturaArchivoIPs(){
 	archivo_resultado<< "// Filtros ////////////////////////////////////////////////////////";
 	archivo_resultado<< "\n";
 	
+	
+	
+	// Generando comandos ////////////////////////////////////////////////////////////////
 	while (getline (ifstream_archivo, str_aux_text)) {
-		
 		//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),  (String)(func_sacar_ip(str_aux_text))     ).ToStd();
-
 
 		if(gui_puerto80.Get()){
 			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"80", "80").ToStd();
@@ -125,54 +127,49 @@ void comandos_L3L4::lecturaArchivoIPs(){
 			i_auxNum++;
 		}
 		
-		if(gui_puerto80.Get()){
+		if(gui_puerto443.Get()){
 			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"443", "443").ToStd();
 			archivo_resultado << "\n";
 			i_auxNum++;
 		}
 		
-		if(gui_puerto80.Get()){
+		if(gui_puerto1935.Get()){
 			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"1935", "1935").ToStd();
 			archivo_resultado << "\n";
 			i_auxNum++;
 		}
 	}
-
 	
-
-	
-	
-	
-	
-	// PUERTO 80 ////////////////////////////////////////////////////////////////
-	/*
-	if (gui_puerto80.Get()){
-		//generando comando
-		while (getline (ifstream_archivo, str_aux_text)) {
-			i_auxNum++;
-			
-			//archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum),  (String)(func_sacar_ip(str_aux_text))     ).ToStd();
-			archivo_resultado << comandoCreacionFiltro(creacionNombreDeFiltro(i_auxNum), str_aux_text,"80", "80").ToStd();
-			archivo_resultado << "\n";
-		}
-	}
-	*/
-	// PUERTO 443 ////////////////////////////////////////////////////////////////
-	//if (gui_puerto443.
-	//if (gui_puerto1935.Get()
-	
-	
-	///////
-	int contador=1;
+	// Generando bindeado ////////////////////////////////////////////////////////////////
+	//int contador=1;
 	archivo_resultado<<"\n\n// Bindeado ////////////////////////////////////////////////////////\n";
 	
+	for (int i = 1; i < i_auxNum; i++) {
+		//cout << i << "\n";
+		archivo_resultado<<func_generandoBindeado(creacionNombreDeFiltro(i).ToStd(), gui_fg.GetData().ToStd());
+		archivo_resultado<<"\n";
+		//contador++;
+	}
 	
-	while(contador < i_auxNum+1){
+	
+	/*
+	while(contador < i_auxNum){
 		archivo_resultado<<func_generandoBindeado(creacionNombreDeFiltro(contador).ToStd(), gui_fg.GetData().ToStd());
 		archivo_resultado<<"\n";
 		contador++;
 	}
-	///////
+	*/
+	
+	
+	// Generando rollback ////////////////////////////////////////////////////////////////
+	archivo_resultado<<"\n\n// Rollback ////////////////////////////////////////////////////////\n";
+	for (int i = 1; i < i_auxNum; i++) {
+		//cout << i << "\n";
+		archivo_resultado<<func_generandoRollback(creacionNombreDeFiltro(i).ToStd());
+		archivo_resultado<<"\n";
+		//contador++;
+	}
+	
 
 	// Cerrando archivo de lectura
 	ifstream_archivo.close();
@@ -218,6 +215,10 @@ String comandos_L3L4::comandoCreacionFiltro(String nombre_f,String ipExtraida, S
 
 string func_generandoBindeado(string filterName, string str_filterGroup){
 	return "ADD FLTBINDFLOWF:FLOWFILTERNAME=\""+ str_filterGroup +"\",FILTERNAME=\""+ filterName + "\";";
+}
+
+string func_generandoRollback(string filterName){
+	return "RMV FILTER:OPMODE=SPECIFIC,FILTERNAME=\""+filterName+"\";";
 }
 
 

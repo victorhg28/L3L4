@@ -184,7 +184,7 @@ String comandos_L3L4::creacionNombreDeFiltro(int i_tempContador){
 	
 	nFiltro.pre = "f_";
 	nFiltro.nombre = (String)gui_nomServ.GetData();
-	nFiltro.req = "_r"+FormatInteger(gui_numReq);
+	nFiltro.req = "_r"+(String)gui_numReq.GetData();
 	nFiltro.num_auto = (String)func_formatoNumeracion(i_tempContador);
 	
 	nFiltro.resultado = nFiltro.pre;
@@ -243,7 +243,7 @@ void comandos_L3L4::LeftDrag(Point p, dword keyflags)
 	if(files.GetCount()) {
 		VectorMap<String, ClipData> data;
 		AppendFiles(data, files);
-		DoDragAndDrop(data, Null, DND_COPY);
+		//DoDragAndDrop(data, Null, DND_COPY);
 	}
 }
 

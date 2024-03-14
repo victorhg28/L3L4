@@ -28,6 +28,15 @@ using namespace std;
 string func_generandoBindeado(string filterName, string str_filterGroup);
 string func_generandoRollback(string filterName);
 
+
+//struct para coordenadas de widget
+struct coordenadasWidget{
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+};
+
 //constructor
 comandos_L3L4::comandos_L3L4()
 {
@@ -81,7 +90,7 @@ void comandos_L3L4::Click(){
 		if(lbl_archivo.GetText().ToStd()!="*arrastre y suelte archivo aqui*"){
 			lecturaArchivoIPs();
 			PromptOK("script generado");
-			Close();
+			//Close();
 		}
 		else{
 			PromptOK("Seleccione un archivo");
@@ -229,12 +238,21 @@ string func_generandoRollback(string filterName){
 
 void comandos_L3L4::DragAndDrop(Point p, PasteClip& d)
 {
-	if(IsDragAndDropSource())
-		return;
-	if(AcceptFiles(d)) {
-		files = GetFiles(d);
-		
-		Refresh();
+	coordenadasWidget coordenadas;
+	coordenadas.x0 = lbl_archivo.GetRect().TopLeft().x;
+	coordenadas.y0 = lbl_archivo.GetRect().TopLeft().y;
+	coordenadas.x1 = lbl_archivo.GetRect().BottomRight().x;
+	coordenadas.y1 = lbl_archivo.GetRect().BottomRight().y;
+	
+	
+	if(p.x>=coordenadas.x0 && p.y>=coordenadas.y0 && p.x<=coordenadas.x1 && p.y<=coordenadas.y1){
+		if(IsDragAndDropSource())
+			return;
+		if(AcceptFiles(d)) {
+			files = GetFiles(d);
+			
+			Refresh();
+		}
 	}
 }
 

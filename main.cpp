@@ -105,7 +105,9 @@ void comandos_L3L4::Click(){
 GUI_APP_MAIN{
 	comandos_L3L4 programa;
 	//programa.Sizeable();
-	programa.Run();
+	//programa.Run();
+	//programa.Zoomable().Sizeable().Run();
+	programa.Zoomable().Run();
 }
 
 void comandos_L3L4::lecturaArchivoIPs(){
